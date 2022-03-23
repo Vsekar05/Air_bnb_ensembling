@@ -17,6 +17,7 @@ itsdangerous
 Jinja2
 jsonschema
 jupyter-core
+matplotlib
 nbformat
 pandas
 plotly
@@ -26,4 +27,6 @@ dnspython
 pytz
 requests
 retrying
+seaborn
+sklearn
 jupyter-dash

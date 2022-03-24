@@ -21,9 +21,11 @@ nbformat
 pandas
 plotly
 pymongo[srv]
+pycaret
 pyparsing
 dnspython
 pytz
 requests
 retrying
+sklearn
 jupyter-dash

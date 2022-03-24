@@ -47,10 +47,6 @@ psutil
 ptyprocess
 pyarrow
 pydevd
-pydevd_concurrency_analyser
-pydevd_file_utils
-pydevd_plugins
-pydevd_tracing
 pygments
 pytz
 pandas

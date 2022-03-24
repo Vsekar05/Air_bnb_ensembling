@@ -41,7 +41,7 @@ nbformat
 packaging
 pexpect
 pickleshare
-pkg_resources
+pycaret
 portpicker
 prompt_toolkit
 psutil

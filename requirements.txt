@@ -46,7 +46,6 @@ prompt_toolkit
 psutil
 ptyprocess
 pyarrow
-pydev_ipython
 pydevconsole
 pydevd
 pydevd_concurrency_analyser

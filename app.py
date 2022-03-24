@@ -21,12 +21,12 @@ from sklearn.svm import SVC
 USERNAME_PASSWORD_PAIRS = [
     ['nethu', '12345'],['guvi', 'guvi'],['vignesh','vignesh']
 ]
-app = JupyterDash(__name__)
-#app = dash.Dash(__name__)
+#app = JupyterDash(__name__)
+app = dash.Dash(__name__)
 auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
 server = app.server
 
-Data=pd.read_csv("/content/Unit_1_Project_Dataset (1).csv")
+Data=pd.read_csv("Unit_1_Project_Dataset (1).csv")
 Data.dropna(inplace=True)
 
 Data.columns

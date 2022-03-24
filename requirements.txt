@@ -14,7 +14,6 @@ dash-auth
 dash-core-components
 dash-html-components
 dash-renderer
-dateutil
 debugpy
 decorator
 flask

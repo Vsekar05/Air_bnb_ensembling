@@ -61,7 +61,6 @@ scipy
 seaborn
 sklearn
 simplegeneric
-sitcustomize
 six
 socks
 sphinxcontrib

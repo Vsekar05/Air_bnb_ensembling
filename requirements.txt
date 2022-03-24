@@ -9,7 +9,6 @@ chart_studio
 click
 cloudpickle
 cycler
-cython_runtime
 dash
 dash-auth
 dash-core-components

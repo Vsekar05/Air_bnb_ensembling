@@ -1,4 +1,3 @@
-PIL
 ansi2html
 astor
 bottleneck

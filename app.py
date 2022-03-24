@@ -26,7 +26,7 @@ app = dash.Dash(__name__)
 auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
 server = app.server
 
-Data=pd.read_csv("Unit_1_Project_Dataset (1).csv")
+Data=pd.read_csv("https://raw.githubusercontent.com/Vsekar05/Datasets/main/Unit_1_Project_Dataset%20(1).csv")
 Data.dropna(inplace=True)
 
 Data.columns
@@ -104,14 +104,14 @@ app.layout=html.Div([html.Div([html.H1(children="Air bnb Data Netherlands Ensemb
                                html.Br(),html.Br(),html.Br(),html.Br(),html.Br(),html.Br()]),
                      html.Div([dcc.Dropdown(['Bagging Classifier',
                                             'AdaBoost Classifier',
-                                             'Gradient Boosting',
+                                             'Gradient Boosting Classifier',
                                              'Voting Classifier',
-                                             'Overall Score'],'Bagging Classifier',id='based-on',clearable=False,searchable=False,style=dict(width='45%')),
+                                             'Overall Score for all the Classifier'],'Bagging Classifier',id='Classifier',clearable=False,searchable=False,style=dict(width='45%')),
                                html.Div(id='dd-output-container')])
 ])
 @app.callback(
     Output('dd-output-container','children'),
-    Input('based-on','value')
+    Input('Classifier','value')
 )
 def update_value(value):
   if value=='Bagging Classifier':
@@ -122,7 +122,7 @@ def update_value(value):
     l=evaluate(ada_boost_clf, X_train, X_test, y_train, y_test)
     return l
   
-  elif value=='Gradient Boosting':
+  elif value=='Gradient Boosting Classifier':
     m=evaluate(grad_boost_clf, X_train, X_test, y_train, y_test)
     return m
   
@@ -130,7 +130,7 @@ def update_value(value):
     n=evaluate(voting, X_train, X_test, y_train, y_test)
     return n
   
-  elif value=='Overall Score':
+  elif value=='Overall Score for all the Classifier':
     scores_df = pd.DataFrame(scores)
     return scores_df
 

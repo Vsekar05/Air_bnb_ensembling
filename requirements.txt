@@ -64,7 +64,6 @@ simplegeneric
 six
 socks
 statsmodels
-storemagic
 threadpoolctl
 tornado
 traitlets

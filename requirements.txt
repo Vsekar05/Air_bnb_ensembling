@@ -41,7 +41,6 @@ nbformat
 packaging
 pexpect
 pickleshare
-pkg_resources
 portpicker
 prompt_toolkit
 psutil

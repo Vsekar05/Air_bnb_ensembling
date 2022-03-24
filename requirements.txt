@@ -15,15 +15,12 @@ idna
 ipython-genutils
 itsdangerous
 Jinja2
-jsonschema
 jupyter-core
 nbformat
 numpy
 pandas
 plotly
-pymongo[srv]
 pyparsing
-dnspython
 pytz
 requests
 retrying

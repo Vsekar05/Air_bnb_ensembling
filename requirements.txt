@@ -24,6 +24,5 @@ pyparsing
 pytz
 requests
 retrying
-sklearn
 scikit_learn
 jupyter-dash

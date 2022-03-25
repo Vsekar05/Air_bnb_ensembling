@@ -15,8 +15,6 @@ from sklearn.svm import SVC
 Data=pd.read_csv("https://raw.githubusercontent.com/Vsekar05/Datasets/main/Unit_1_Project_Dataset%20(1).csv")
 Data.dropna(inplace=True)
 
-Data.columns
-
 feature_columns = ["price" ,"review_scores_rating","review_scores_accuracy","review_scores_cleanliness","review_scores_checkin","review_scores_communication",
                                                      "review_scores_location","review_scores_value","host_response_rate","host_response_rate"]
 X = Data[feature_columns]
@@ -109,4 +107,4 @@ elif Classifier=="Overall Score":
 
 elif Classifier=="View scores as a bar plot":
   fig=scores_df.plot(kind='barh', figsize=(15, 8))
-  st.pytplot(fig)
+  st.pyplot(fig)

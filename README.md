@@ -14,4 +14,4 @@ Logistic Regression
 
 I have used Streamlit to deploy the app
 
-
+![Capture](https://user-images.githubusercontent.com/95733152/160081517-45ea2f7d-2de8-4c68-9324-32df317f4bf5.PNG)

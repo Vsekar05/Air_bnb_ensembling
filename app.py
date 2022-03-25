@@ -88,19 +88,19 @@ Classifier=st.selectbox(label="Select the Classifiers", options=["Bagging Classi
 
 if Classifier=="Bagging Classifier":
   k=evaluate(bagging_clf, X_train, X_test, y_train, y_test)
-  st.write('The scores for Bagging Classifier on the given data',k)
+  st.write('The scores for Bagging Classifier on the given data',scores['Bagging Classifier'])
 
 elif Classifier=="AdaBoost Classifier":
   l=evaluate(ada_boost_clf, X_train, X_test, y_train, y_test)
-  st.write('The scores for AdaBoost Classifier on the given data',l)
+  st.write('The scores for AdaBoost Classifier on the given data',scores['AdaBoost Classifier'])
 
 elif Classifier=="Gradient Boosting":
   m=evaluate(grad_boost_clf, X_train, X_test, y_train, y_test)
-  st.write('The scores for Gradient Boosting on the given data',m)
+  st.write('The scores for Gradient Boosting on the given data',scores['Gradient Boosting'])
 
 elif Classifier=="Voting Classifier":
   n=evaluate(voting, X_train, X_test, y_train, y_test)
-  st.write('The scores for Voting Classifier on the given data',n)
+  st.write('The scores for Voting Classifier on the given data',scores['Voting Classifier'])
   
 elif Classifier=="Overall Score":
   st.write('The overall scores on the given data',scores_df)

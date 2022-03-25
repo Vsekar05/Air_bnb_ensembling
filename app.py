@@ -106,5 +106,4 @@ elif Classifier=="Overall Score":
   st.write('The overall scores on the given data',scores_df)
 
 elif Classifier=="View scores as a bar plot":
-  fig=scores_df.plot(kind='barh', figsize=(15, 8))
-  st.pyplot(fig)
+  st.bar_chart(scores_df,width=15, height=8)

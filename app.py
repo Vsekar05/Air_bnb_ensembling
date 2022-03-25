@@ -1,9 +1,6 @@
 import pandas as pd
-import dash
-import dash_auth
-import dash_core_components as dcc
-import dash_html_components as html
-from dash import Dash,dcc,html,Input,Output
+import numpy as np
+import streamlit as st
 from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import BaggingClassifier
@@ -13,13 +10,7 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.ensemble import VotingClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
-USERNAME_PASSWORD_PAIRS = [
-    ['nethu', '12345'],['guvi', 'guvi'],['vignesh','vignesh']
-]
-#app = JupyterDash(__name__)
-app = dash.Dash(__name__)
-auth = dash_auth.BasicAuth(app,USERNAME_PASSWORD_PAIRS)
-server = app.server
+
 
 Data=pd.read_csv("https://raw.githubusercontent.com/Vsekar05/Datasets/main/Unit_1_Project_Dataset%20(1).csv")
 Data.dropna(inplace=True)
@@ -62,7 +53,7 @@ scores = {
 ada_boost_clf = AdaBoostClassifier(n_estimators=30)
 ada_boost_clf.fit(X_train, y_train)
 
-scores['AdaBoost'] = {
+scores['AdaBoost Classifier'] = {
         'Train': accuracy_score(y_train, ada_boost_clf.predict(X_train)),
         'Test': accuracy_score(y_test, ada_boost_clf.predict(X_test)),
     }
@@ -88,46 +79,34 @@ estimators.append(('SVM', svm_clf))
 voting = VotingClassifier(estimators=estimators)
 voting.fit(X_train, y_train)
 
-scores['Voting'] = {
+scores['Voting Classifier'] = {
         'Train': accuracy_score(y_train, voting.predict(X_train)),
         'Test': accuracy_score(y_test, voting.predict(X_test)),
     }
+scores_df = pd.DataFrame(scores)
 
-app.layout=html.Div([html.Div([html.H1(children="Air bnb Data Netherlands Ensembling results using different classifier",
-                                       style={'textAlign':'center','color':'red','fontSize':40,
-                                                                              'backgroundColor':'black'}),
-                               html.Br(),html.Br(),html.Br(),html.Br(),html.Br(),html.Br()]),
-                     html.Div([dcc.Dropdown(['Bagging Classifier',
-                                            'AdaBoost Classifier',
-                                             'Gradient Boosting Classifier',
-                                             'Voting Classifier',
-                                             'Overall Score for all the Classifier'],'Bagging Classifier',id='Classifier',clearable=False,searchable=False,style=dict(width='45%')),
-                               html.Div(id='dd-output-container')])
-])
-@app.callback(
-    Output('dd-output-container','children'),
-    Input('Classifier','value')
-)
-def update_value(value):
-  if value=='Bagging Classifier':
-    k=evaluate(bagging_clf, X_train, X_test, y_train, y_test)
-    return k
-  
-  elif value=='AdaBoost Classifier':
-    l=evaluate(ada_boost_clf, X_train, X_test, y_train, y_test)
-    return l
-  
-  elif value=='Gradient Boosting Classifier':
-    m=evaluate(grad_boost_clf, X_train, X_test, y_train, y_test)
-    return m
-  
-  elif value=='Voting Classifier':
-    n=evaluate(voting, X_train, X_test, y_train, y_test)
-    return n
-  
-  elif value=='Overall Score for all the Classifier':
-    scores_df = pd.DataFrame(scores)
-    return scores_df
 
-if __name__ == '__main__':
-   app.run_server(debug=True)
+Classifier=st.selectbox(label="Select the Classifiers", options=["Bagging Classifier","AdaBoost Classifier","Gradient Boosting","Voting Classifier","Overall Score","View scores as a bar plot"])
+
+if Classifier=="Bagging Classifier":
+  k=evaluate(bagging_clf, X_train, X_test, y_train, y_test)
+  st.write('The scores for Bagging Classifier on the given data',k)
+
+elif Classifier=="AdaBoost Classifier":
+  l=evaluate(ada_boost_clf, X_train, X_test, y_train, y_test)
+  st.write('The scores for AdaBoost Classifier on the given data',l)
+
+elif Classifier=="Gradient Boosting":
+  m=evaluate(grad_boost_clf, X_train, X_test, y_train, y_test)
+  st.write('The scores for Gradient Boosting on the given data',m)
+
+elif Classifier=="Voting Classifier":
+  n=evaluate(voting, X_train, X_test, y_train, y_test)
+  st.write('The scores for Voting Classifier on the given data',n)
+  
+elif Classifier=="Overall Score":
+  st.write('The overall scores on the given data',scores_df)
+
+elif Classifier=="View scores as a bar plot":
+  fig=scores_df.plot(kind='barh', figsize=(15, 8))
+  st.pytplot(fig)
